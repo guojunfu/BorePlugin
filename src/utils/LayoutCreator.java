@@ -249,13 +249,14 @@ public class LayoutCreator extends WriteCommandAction.Simple {
             for (Element element : editTextElements) {
                 // generator EditText string name
                 String idName = element.id;
+                String feildName = element.getFieldName();
                 int index = idName.lastIndexOf("_");
                 String name = index == -1 ? idName : idName.substring(index + 1);
                 if(name.equals(idName)) {
                     name += "String";
                 }
 
-                sbEditText.append("String " + name + " = " + idName + ".getText().toString().trim();\n");
+                sbEditText.append("String " + name + " = " + feildName + ".getText().toString().trim();\n");
                 sbEditText.append("if(TextUtils.isEmpty(" + name + ")) {\n");
                 // 提示的toast为EditText的hint文字,无hint时格式为"name不能为空"
                 String emptyTint = name + "不能为空";
